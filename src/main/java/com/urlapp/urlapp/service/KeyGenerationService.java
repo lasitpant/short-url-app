@@ -30,16 +30,14 @@ public class KeyGenerationService {
 
     }
 
-    public void saveToKeyStore(){
 
-    }
 
     public String getKey(){
         List<KeyStore> data=  keyRepository.getTop();
         data.get(0).getKey();
-        System.out.println(data.get(0).getKey());
         return data.get(0).getKey();
     }
+
     public void updateState(String shortUrl){
         KeyStore key = keyRepository.findBykeyUrl(shortUrl);
         key.setActiveState(true);

@@ -7,20 +7,15 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: 'shortener'
-      # So you don't have to use root, but you can if you like
       MYSQL_USER: 'mysql'
-      # You can use whatever password you like
       MYSQL_PASSWORD: 'mysql'
-      # Password for root access
       MYSQL_ROOT_PASSWORD: 'password'
     ports:
-      # <Port exposed> : < MySQL Port running inside container>
       - '3306:3306'
     expose:
-      # Opens port 3306 on the container
       - '3306'
-#    cap_add:
-#      - SYS_NICE
+    volumes:
+      - data:/var/lib/mysql
   myapp-main:
     build:
       context: .
@@ -31,11 +26,13 @@ services:
       - db
     ports:
       - 8080:8080
+  angular-service:
+    container_name: url-shortener-client
+    build: ./url-app-client
 
-  angular-service: # The name of the service
-    container_name: angularcontainer  # Container name
-    build: ./url-app-client # Location of our Dockerfile
-#    volumes: # Volume binding
-#      - '/url-app-client/:/usr/src/app'
     ports:
-      - '4200:4200' # Port mapping
+      - '4200:4200'
+volumes:
+  data:
+
+

@@ -7,7 +7,7 @@ import java.util.Date;
 @Table(name = "url")
 public class Url {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(nullable = false)
