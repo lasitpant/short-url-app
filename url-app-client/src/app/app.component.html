@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <span class="fill-remaining-space">
+    <button #r="matMenuTrigger" mat-icon-button [matMenuTriggerFor]="menu" >
+      <mat-icon (mouseover)="open(r)"  >menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+      <button mat-menu-item>
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </button>
+
+    </mat-menu>
+  </span>
+  <span class="fill-remaining-space">Neueda Assignment</span>
+</mat-toolbar>
+<app-short-url></app-short-url>

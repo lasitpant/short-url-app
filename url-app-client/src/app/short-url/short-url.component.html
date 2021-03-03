@@ -1,0 +1,79 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title><h1>Url Shortening Service</h1></mat-card-title>
+  </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="urlForm" #formDir="ngForm">
+        <div class="cross-validation" [class.cross-validation-error]="urlForm.errors?.identityRevealed
+          && (urlForm.touched || urlForm.dirty)">
+            <div class="form-group">
+
+              <mat-label class="form-control" for="expiryDate">Original Url </mat-label>
+              <input id="url" class="form-control"
+                     formControlName="url" required  placeholder="Type in a valid url">
+
+              <div class="error-msg" *ngIf="url.invalid && (url.dirty || url.touched)">
+
+                <div *ngIf="url.errors.required">
+                  Url is required.
+                </div>
+                <div *ngIf="url.errors.pattern">
+                  Not a valid url !
+                </div>
+
+              </div>
+            </div>
+
+            <div class="form-group">
+              <mat-label class="form-control" for="expiryDate">Expiry Date </mat-label>
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date"
+                     id="expiryDate" formControlName="expiryDate" class="form-control">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+
+            </div>
+
+          <button type="submit" class="btn btn-default"
+                  [disabled]="urlForm.invalid" (click)="onSubmit()">Submit</button>
+          <button type="button" class="btn btn-default"
+                  (click)="formDir.resetForm({})">Reset</button>
+        </div>
+
+      </form>
+      <p  *ngIf="isVisible">{{ generatedLink }}</p>
+
+
+    </mat-card-content>
+
+</mat-card>
+<div>
+  <button type="button" class="btn btn-default" (click)="updateDash()">Load Graphs</button>
+</div>
+<div class="charts" *ngIf="pieChartLabels && pieChartData">
+  <canvas baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [colors]="pieChartColors"
+          [chartType]="'pie'"></canvas>
+</div>
+<div class="charts" *ngIf="barChartData && barChartLabels">
+  <canvas baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="'bar'">
+  </canvas>
+</div>
+<div class="charts" *ngIf="demodoughnutChartData">
+  <canvas baseChart
+          [data]="demodoughnutChartData"
+          [labels]="doughnutChartLabels"
+          [chartType]="doughnutChartType"
+          [colors]="doughnutChartColors"></canvas>
+</div>
+
+
+<!--<div class="container">-->

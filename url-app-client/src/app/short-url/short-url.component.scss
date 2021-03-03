@@ -1,0 +1,135 @@
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+
+mat-card{
+  padding-top: 3rem;
+  width: 40%;
+  height: 35%;
+  display: block;
+  margin-left:auto;
+  margin-right:auto;
+  vertical-align:middle;
+}
+mat-card-content{
+  vertical-align: middle;
+  padding: 5% 0 0 5%;
+  height: 30%;
+}
+.form-group{
+  padding:5px;
+
+}
+
+.form-control{
+  margin: 5px;
+  width: 60%;
+}
+
+
+.cross-validation-error input {
+  border-left: 5px solid red;
+}
+
+button {
+  font-family: Arial;
+  background-color: #eee;
+  border: none;
+  margin: 0.5em;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+}
+button:hover {
+  background-color: #cfd8dc;
+}
+button:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: auto;
+}
+.error-msg {
+  color: #a94442;
+  padding-left: 20%;
+}
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 200%;
+  padding: 0 0 0 30px;
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+input {
+  border: 0;
+  border-bottom: 2px solid #9e9e9e;
+  outline: none;
+  transition: .2s ease-in-out;
+  box-sizing: border-box;
+}
+
+label {
+  top: 0;
+  left: 0; right: 0;
+  color: #616161;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  font-size: 1rem;
+  cursor: text;
+  transition: .2s ease-in-out;
+  box-sizing: border-box;
+}
+
+input,
+label {
+  width: 100%;
+  height: 1rem;
+  font-size: 1rem;
+}
+
+/* Interation */
+input:valid,
+input:focus {
+  border-bottom: 2px solid #26a69a;
+}
+
+input:valid + label,
+input:focus + label {
+  color: #26a69a;
+  font-size: .8rem;
+  top: -30px;
+  pointer-events: none;
+}
+
+
+p{
+  background-color: #42A948;
+  width: 50%;
+  padding: 0 0 0 5px;
+}
+
+.charts{
+  padding: 5% 0 0 3%;
+  display: block;
+  width: 30%;
+  height: 50%;
+  display:inline-block;
+}
