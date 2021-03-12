@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class UrlShorteningService {
@@ -37,7 +39,12 @@ public class UrlShorteningService {
     }
 
     public String getOriginalUrl(String shortUrl){
-        return urlMappingRepository.findByShortUrl(shortUrl).getLongUrl();
+        String url = urlMappingRepository.findByShortUrl(shortUrl).getLongUrl();
+        if (validateUrl(url)){
+            System.out.println("Removing Prefix");
+            return removePrefix(url);
+        }
+        return "http://"+url;
     }
 
     private void createUrlMapping(Url url, String shortUrl){
@@ -45,5 +52,21 @@ public class UrlShorteningService {
         urlMapping.setShortUrl(shortUrl);
         urlMapping.setLongUrl(url.getLongUrl());
         urlMappingRepository.save(urlMapping);
+    }
+
+    private boolean validateUrl(String url){
+        String URL_REGEX = "^((https?|http))";
+
+        Pattern p = Pattern.compile(URL_REGEX);
+        Matcher m = p.matcher(url);//replace with string to compare
+        if(m.find()) {
+            System.out.println("String contains http");
+            return true;
+        }
+        return false;
+    }
+    private String removePrefix(String url){
+        url.replace("http://","").replace("https://","");
+        return url;
     }
 }

@@ -17,6 +17,7 @@ import java.util.Map;
 @RestController
 public class UrlController {
 
+
     private final UrlShorteningService urlShorteningService;
 
     private StatisticService statisticService;
@@ -42,7 +43,7 @@ public class UrlController {
         try {
             String redirectUrl = urlShorteningService.getOriginalUrl(shortUrl);
             RedirectView redirectView = new RedirectView();
-            redirectView.setUrl("http://" + redirectUrl);
+            redirectView.setUrl(redirectUrl);
             return redirectView;
         }
         catch (Exception e){
